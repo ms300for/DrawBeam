@@ -7,7 +7,7 @@ class Draw():
         self.yDim = yDim
         self.Figure = plt.figure(figsize = (xDim/yDim*8, 8))
 
-    def DrawRectangule(self, xMin, yMin, xMax, yMax, thickness, colorLine = 'black'):
+    def DrawRectangule(self, xMin, yMin, xMax, yMax, colorLine = 'black'):
         plt.plot([xMin, xMin], [yMin, yMax], color = colorLine)
         plt.plot([xMin, xMax], [yMin, yMin], color = colorLine)
         plt.plot([xMin, xMax], [yMax, yMax], color = colorLine)
@@ -20,12 +20,6 @@ class Draw():
 
     def SaveFig(self):
         plt.saveImg(self.Figure)
-
-
-a = Draw(25, 35)
-a.DrawRectangule(1, 1, 15, 15, 3)
-a.Plot()
-    
         
     
 
