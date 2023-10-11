@@ -4,6 +4,7 @@ import numpy as np
 
 
 class SteelBarLine():
+    self.Area = 0
     def __init__(self, x, y, radius):
         self.Center = (x, y)
         self.Radius = radius
@@ -72,8 +73,17 @@ class BeamBase():
             else:
                 [barList.append(i) for i in self.DistrLineBar(numberPerLine, xInitial, yInitial, 'bordas')]
                 
-            yInitial += self.Av
+            yInitial += self.Av + self.DBar
         return barList
+
+    def CalcBarArea(self):
+        xMin = min([i for i.Center[0] in self.BarConfiguration])
+        xMax = max([i for i.Center[0] in self.BarConfiguration])
+        
+        yMin = min([i for i.Center[1] in self.BarConfiguration])
+        yMax = max([i for i.Center[1] in self.BarConfiguration])
+
+        for i in range(
                 
         
     def DistrLineBar(self, quantBar, xPos, yPos, distType = 'uniforme'):
@@ -85,32 +95,26 @@ class BeamBase():
             return steelBars
 
         elif (quantBar == 1):
-            steelBars.append(SteelBarLine(self.Width/2, yPos, self.DBar))
+            steelBars.append(SteelBarLine(self.Width/2, yPos, self.DBar/2))
         
         elif (distType == 'uniforme' or (not (quantBar % 2 == 0))):
             dist = self.CalcDistBar(quantBar)
             for i in range(quantBar):
-                steelBars.append(SteelBarLine(xInit, yPos, self.DBar))
+                steelBars.append(SteelBarLine(xInit, yPos, self.DBar/2))
                 xInit += dist + self.DBar
 
         else:
             dist = self.CalcMinDistBar()
             for i in range(0, quantBar//2):
-                steelBars.append(SteelBarLine(xInit, yPos, self.DBar))
+                steelBars.append(SteelBarLine(xInit, yPos, self.DBar/2))
                 xInit += dist + self.DBar
             xInit = self.Width - xPos
             for i in range(0, quantBar//2):
-                steelBars.append(SteelBarLine(xInit, yPos, self.DBar))
+                steelBars.append(SteelBarLine(xInit, yPos, self.DBar/2))
                 xInit -= (dist + self.DBar)
 
         return steelBars
 #self, width, height, agressClass, quantBar, dBar, dAgreg, dEstribo, av):
-bar = BeamBase(20, 45, 2, 5, 1.25, 2.5, 0.5, 2)
-
-("----------------")
-for i in bar.BarConfiguration:
-    print(i.Center, i.Radius)
-
 
 
     
