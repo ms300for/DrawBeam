@@ -44,7 +44,7 @@ class DrawBeam(Draw):
                             self.Beam.Width - self.Beam.Covering - self.Beam.DEstribo,
                             self.Beam.Height - self.Beam.Covering - self.Beam.DEstribo, "red")
 
-        for i in self.Beam.BarConfiguration:
+        for i in self.Beam.GetBarArmorList():
             self.DrawCircle(i.Center, i.Radius)
         
     

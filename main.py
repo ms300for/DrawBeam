@@ -4,12 +4,17 @@ from DrawBase import DrawBeam
 import BeamBase
 
 
-bar = BeamBase.BeamBase(20, 45, 2, 5, 1.25, 2.5, 0.5, 2)
+bar = BeamBase.BeamBase(25, 45, 2, 10, 1.25, 2.5, 0.5, 2)
+
+bar.CalcBarArea()
+
 for i in bar.BarConfiguration:
-    print(i.Center, i.Radius)
-#draw = DrawBeam(bar)
-#draw.DrawBeam(True, True)
-#draw.Plot()
+    for j in i:
+        print (j.Center, j.Area)
+
+draw = DrawBeam(bar)
+draw.DrawBeam(True, True)
+draw.Plot()
 
         
     
